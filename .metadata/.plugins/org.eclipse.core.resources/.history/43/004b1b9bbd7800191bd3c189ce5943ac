@@ -1,0 +1,123 @@
+package Round561;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class typeB {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	static void printDivisors(int n) 
+    { 
+		int r=0;
+		int c=0;
+        // Vector to store half of the divisors 
+        Vector<Integer> v = new Vector<>(); 
+        for (int i=5; i<=Math.sqrt(n); i++) 
+        { 
+            if (n%i==0) 
+            {
+            		r=i;
+                    v.add(i);
+                    if(n/i>=i) {
+                    	c=n/i;
+                    	v.add(n/i);
+                    	break;
+                    }
+                    
+                }
+        }
+            char[][] str = new char[r][c];
+            for(int i=0;i<5;i++) {
+            	for(int j=0;i<5;j++) {
+            		if(i==j) {
+            			str[i][j]='a';
+            		}
+            		else if((j-i)==1) {
+            			str[i][j]='e';
+            		}
+            		else if((j-i)==2) {
+            			str[i][j]='i';
+            		}
+            		else if((j-i)==3) {
+            			str[i][j]='o';
+            		}
+            		else if((j-i)==4) {
+            			str[i][j]='u';
+            		}
+            	}
+            }
+            for(int i=0;i<5;i++) {
+            	for(int j=0;i<5;j++) {
+            		System.out.print(str[i][j]);
+            	}
+            	System.out.println();
+            }
+        
+        // The vector will be printed in reverse 
+        for (int i=v.size()-1; i>=0; i--) 
+             System.out.printf("%d ", v.get(i)); 
+    } 
+
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int k = s.nextInt();
+		printDivisors(k);
+	}
+}

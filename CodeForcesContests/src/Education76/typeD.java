@@ -1,0 +1,107 @@
+package Education76;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+public class typeD {
+	static class Pair{
+		int pow;
+		int str;
+		Pair(int x, int y){
+			pow = x;
+			str= y;
+		}
+	}
+	public static int minDays(Pair[] hero, int[] arr, int x, int str, int y, int ans) {
+		if(x>hero.length || y>arr.length) {
+			return ans;
+		}
+		else{
+			if(hero[x].pow>=arr[y] && str<hero[x].str) {
+			return minDays(hero, arr, x,str+1,y+1, ans);
+			}
+			else if(hero[x].pow<arr[y]||hero[x].str<=str) {
+				return minDays(hero,arr,x+1,0,y,ans+1);
+			}
+			else {
+				return -1;
+			}
+	}
+//		return ans;
+	}
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int n = s.nextInt();
+			int[] arr = new int[n];
+			for(int i=0;i<n;i++) {
+				arr[i]=s.nextInt();
+			}
+			int m = s.nextInt();
+			Pair[] hero = new Pair[m];
+			for(int i=0;i<m;i++) {
+				hero[i] = new Pair(s.nextInt(), s.nextInt());
+			}
+			int ans = minDays(hero, arr, 0,0, 0, 0);
+		}
+	}
+	static class FastReader 
+
+	{ 
+	    BufferedReader br; 
+	    StringTokenizer st; 
+
+	    public FastReader() 
+	    { 
+	        br = new BufferedReader(new
+	                 InputStreamReader(System.in)); 
+	    } 
+
+	    String next() 
+	    { 
+	        while (st == null || !st.hasMoreElements()) 
+	        { 
+	            try
+	            { 
+	                st = new StringTokenizer(br.readLine()); 
+	            } 
+	            catch (IOException  e) 
+	            { 
+	                e.printStackTrace(); 
+	            } 
+	        } 
+	        return st.nextToken(); 
+	    } 
+
+	    int nextInt() 
+	    { 
+	        return Integer.parseInt(next()); 
+	    } 
+
+	    long nextLong() 
+	    { 
+	        return Long.parseLong(next()); 
+	    } 
+
+	    double nextDouble() 
+	    { 
+	        return Double.parseDouble(next()); 
+	    } 
+
+	    String nextLine() 
+	    { 
+	        String str = ""; 
+	        try
+	        { 
+	            str = br.readLine(); 
+	        } 
+	        catch (IOException e) 
+	        { 
+	            e.printStackTrace(); 
+	        } 
+	        return str; 
+	    } 
+	} 
+
+}

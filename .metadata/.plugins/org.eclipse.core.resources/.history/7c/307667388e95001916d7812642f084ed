@@ -1,0 +1,126 @@
+package Final;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class problem1 {
+	static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	static void generate(Set<String> st, String s) 
+    { 
+        if (s.length() == 0) { 
+            return; 
+        } 
+  
+        // If current string is not already present. 
+        if (!st.contains(s)) { 
+            st.add(s); 
+  
+            // Traverse current string, one by one 
+            // remove every character and recur. 
+            for (int i = 0; i < s.length(); i++) { 
+                String t = s; 
+                t = t.substring(0, i) + t.substring(i + 1); 
+                generate(st, t); 
+            } 
+        } 
+        return; 
+    } 
+	public static int Count(String str) {
+		int n = str.length();
+		HashSet<Character> set = new HashSet<>();
+		for(int i=0;i<n;i++) {
+			set.add(str.charAt(i));
+		}
+		return set.size();
+	}
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int L = s.nextInt();
+		int Q = s.nextInt();
+		String str = s.nextLine();
+		int n = str.length(); 
+		  
+		int sub_count = n*(n+1)/2; 
+	    String []arr = new String[sub_count];      
+	    int index = 0; 
+	    for (int i = 0; i < n; i++)  
+	        for (int len = 1; len <= n - i; len++)  
+	        { 
+	                arr[index++] = str.substring(i, i+len); 
+	        } 
+	    Arrays.sort(arr); 
+//	    for(int i=0;i<arr.length;i++) {
+//	    	System.out.println(arr[i]);
+//	    }
+	    int[] count = new int[arr.length];
+	    for(int i=0;i<count.length;i++) {
+	    	int c = Count(arr[i]);
+	    	count[i]=c;
+	    }
+	    for(int i=0;i<Q;i++) {
+	    	int q = s.nextInt();
+	    	if(q<=count.length) System.out.println(count[q-1]);
+	    	else System.out.println(-1 );
+	    }
+		
+	}
+}

@@ -1,0 +1,20 @@
+package January19;
+import java.util.*;
+public class FANCY {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T=0;
+		for(int t=0;t<T;t++) {
+			String str = s.nextLine();
+			if(str.contentEquals(" not ")) {
+				System.out.println("Fancy");
+			}
+			else {
+				System.out.println("regular fancy");
+			}
+		}
+
+	}
+
+}

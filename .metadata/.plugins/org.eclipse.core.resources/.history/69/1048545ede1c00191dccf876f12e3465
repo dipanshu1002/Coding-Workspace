@@ -1,0 +1,43 @@
+package Jan19;
+import java.util.Scanner;
+public class ADAMTR {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T=s.nextInt();
+		for(int t=0;t<T;t++) {
+			int N = s.nextInt();
+			int[][] A = new int[N][N];
+			int[][] B = new int[N][N];
+			for(int i=0;i<N;i++) {
+				for(int j=0;j<N;j++) {
+				A[i][j]=s.nextInt();
+			}
+			}
+			for(int i=0;i<N;i++) {
+				for(int j=0;j<N;j++) {
+				B[i][j]=s.nextInt();
+			}
+			}
+			for(int i=0;i<N;i++) {
+				for(int j=0;j<N;j++) {
+					if(B[i][j]==A[i][j]|| B[i][j]==A[j][i]) {
+						continue;
+					}
+					else {
+						flag =1;
+						break;
+					}
+				}
+				if(flag==1) {
+					break;
+				}
+			}
+			if(flag==1) {
+				System.out.println("No");
+			}
+			else {
+				System.out.println("Yes");
+			}
+		}
+	}
+}

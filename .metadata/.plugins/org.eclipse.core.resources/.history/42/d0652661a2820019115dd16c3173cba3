@@ -1,0 +1,106 @@
+package MayCircuits;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class Capitals_Cities {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int N = s.nextInt();
+		int K = s.nextInt();
+		int[] arr = new int[N];
+		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+		for(int i=0;i<N;i++) {
+			arr[i]=s.nextInt();
+			map.put(arr[i],i+1);
+		}
+		Arrays.sort(arr);
+		int midI = 0 + (N-1)/2 ;
+		int mid = arr[(N-1)/2];
+		int sum=0;
+		for(int i=0;i<N;i++) {
+			
+			sum+=Math.abs(mid-arr[i]);
+		}
+		int ans=0;
+		if(K<sum) {
+			ans = sum-K;
+		}else if(K>sum) {
+			int sum2=0;
+			while(K>sum2) {
+				sum2=0;
+				midI = midI-1;
+				mid = arr[midI];
+				for(int i=0;i<N;i++) {
+					sum2+=Math.abs(mid-arr[i]);
+				}
+			}
+			if(sum2-K<=1) {
+				System.out.println(map.get(mid)+" "+(sum2-K));
+			}
+			else {
+				System.out.println(map.get(arr[midI+1])+" "+(1));
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,134 @@
+package June19;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class LENTMO {
+static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	static long mod = (long)Math.pow(10,9)+7;
+	
+	public static long power(long a, long n) {
+		if(n==0) {
+			return 1;
+		}
+		if(n%2==0) {
+			return power((a*a)%mod,n/2);
+		}
+		else {
+			return (a%mod*power((a*a)%mod,n/2)%mod)%mod;
+		}
+	}
+	
+	public static long gcd(long a, long b) {
+		if(b==0) {
+			return a;
+		}
+		else {
+			return gcd(b,a%b);
+		}
+	}
+	
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int N = s.nextInt();
+			long sum=0;
+			long[] arr = new long[N];
+			for(int i=0;i<N;i++) {
+				arr[i]=s.nextLong();
+				sum+=arr[i];
+			}
+			long K = s.nextLong();
+			long X = s.nextLong();
+			long[] modDiff = new long[N];
+			for(int i=0;i<N;i++) {
+				modDiff[i]= X^arr[i] - arr[i];
+			}
+			System.out.println(4^4);
+			for(int i=0;i<N;i++) {
+				System.out.print(modDiff[i]+" ");
+			}
+			System.out.println();
+			Arrays.sort(modDiff);
+			int flag=0;
+			int j=0;
+			while(flag==0) {
+				int sum2=0;
+				if((j+K)<N) {
+				for(int i=j;i<j+K;i++) {
+					sum2+=modDiff[i];
+				}
+				}
+				j=(int)(j+K);
+				if(sum2>0) {
+					sum+=sum2;
+				}
+				else {
+					flag=1;
+				}
+			}
+			System.out.println(sum);
+			
+		}
+	}
+}

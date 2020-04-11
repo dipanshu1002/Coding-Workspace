@@ -1,0 +1,105 @@
+package May19;
+import java.util.*;
+import java.io.BufferedReader; 
+import java.io.IOException; 
+import java.io.InputStreamReader; 
+import java.util.Scanner; 
+import java.util.StringTokenizer; 
+public class REDONE {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	private static void calculateFactorial( int uptoValue) {
+        int answer=1;
+        boolean oddUptoValue=((uptoValue&1)==1);
+        int tempUptoValue=uptoValue;
+        if(oddUptoValue){
+            tempUptoValue=uptoValue-1;
+            }
+
+        int nextSum = tempUptoValue;
+        int nextMulti = tempUptoValue;
+        while (nextSum >= 2){
+            answer=answer*nextMulti;
+            nextSum -= 2;
+            nextMulti += nextSum;
+        //  long product=(tempUptoValue-i+1L)*i;
+
+        }
+        if(oddUptoValue){
+            answer=answer*uptoValue;
+        }
+        System.out.println(answer);
+    }
+  
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int mod = (int)Math.pow(10,9)+7;
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int N = s.nextInt();
+			long[] dp = new long[N+1];
+			dp[0]=0;
+			dp[1]=1;
+			for(int i=2;i<=N;i++) {
+				dp[i]=(int)(dp[i-1]%mod+i%mod+((i%mod*dp[i-1]%mod)%mod))%mod;
+			}
+			calculateFactorial((int)(dp[N]-1));
+			System.out.println(dp[N]);
+			
+		}
+	}
+}

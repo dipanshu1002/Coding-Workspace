@@ -1,0 +1,88 @@
+package June19;
+//10
+//9 3
+//2
+//10 10
+//9
+//5 10
+//15
+//2 10
+//45
+//2 100000
+//999949972
+//2 1000000
+//999496507
+//2 100000000
+//915000007
+//2 1000000000
+//28
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Test3 { 
+	
+		public static void main (String[] args) //throws IOException
+		{
+				Scanner sc=new Scanner(System.in);
+				int t;
+				t=sc.nextInt();
+				while(t!=0)
+				{
+					long n,k;
+					n=sc.nextLong();
+					k=sc.nextLong();
+					
+					long ans=(k-1)%1000000007;
+					
+					if(n>=k)
+						System.out.println(ans);
+					else if(n==2)
+					{
+						long a=k-n;
+						
+						long d=1-n;
+						
+						long n1=1-a/d;
+						
+						if(a%d==0)
+							n1-=1;
+
+						//long last=a+(n1-1)*d;
+						long part=(((n1%1000000007)*((n1+1)%1000000007))%1000000007*500000004)%1000000007;
+						
+						part=(part+ans)%1000000007;
+
+						System.out.println(part);
+					}
+					else
+					{
+						long a=k-n;
+						
+						long d=1-n;
+						
+						long n1=1-a/d;
+						
+						if(a%d==0)
+							n1-=1;
+						
+						long ans3;
+						//formula n/2*(2a+(n-1)d)
+						ans3=(n1-1)%1000000007;
+						ans3=(ans3*(d%1000000007))%1000000007;
+						ans3=((2*(a%1000000007))%1000000007+ans3)%1000000007;
+						ans3=((((n1%1000000007)*ans3)%1000000007)*500000004)%1000000007;
+						if(ans3<0)
+						{
+							ans3+=1000000007;
+						}
+						ans3=(ans+ans3)%1000000007;
+						System.out.println(ans3);
+					}
+					
+					t--;
+				}
+				
+		}
+	}

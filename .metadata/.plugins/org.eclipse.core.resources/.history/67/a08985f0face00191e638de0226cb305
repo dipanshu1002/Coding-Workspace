@@ -1,0 +1,94 @@
+package Round583;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+public class typeA {
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int n = s.nextInt();
+		int d = s.nextInt();
+		int e = s.nextInt();
+		int gcd1 = 1;
+		int gcd2 = 5;
+		int left = n;
+		int left2 = n;
+		int a = n/d;
+		
+		if(a>=1) {
+			left-=a*d;
+			n-=a*d;
+			int b = n/e;
+			if(b%5==0) {
+			left-=b*e;
+			}
+			
+		}
+		int b = n/e;
+		if(b%5==0) {
+			left2-=b*e;
+			n-=b*e;
+			int a2 = n/d;
+			left2-=a2*d;
+		}
+		System.out.println(Math.min(left2,left));
+	}
+static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	
+}

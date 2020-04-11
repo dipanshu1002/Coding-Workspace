@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class BowlingClass {
+	Scanner s = new Scanner(System.in);
+	 private int firstRoll;
+	 private int secondRoll;
+	 boolean strike = false;
+	 boolean spare = false;
+	 boolean doubleStrike = false;
+	 int round = 1;
+	 
+	 public void setFirstRoll() {
+		 System.out.println("Enter the First roll");
+		 int n= s.nextInt();
+		 if(n<=10) {
+			 firstRoll = n;
+		 }
+		 else {
+			 System.out.println("ERROR");
+			 
+		 }
+	 }
+	 
+	 public void setSecondRoll() {
+		 System.out.println("Enter the Second roll");
+
+		 int n= s.nextInt();
+		 if(n<=(10-firstRoll)) {
+			 secondRoll = n;
+		 }
+		 else {
+			 System.out.println("ERROR");
+		 }
+	 }
+	
+	 public  int getFirstRoll() {
+		 return firstRoll;
+	 }
+	 
+	 public int getSecondRoll() {
+		 return secondRoll;
+	 }
+	 
+	 
+	}
+

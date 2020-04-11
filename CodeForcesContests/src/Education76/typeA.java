@@ -1,0 +1,104 @@
+package Education76;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class typeA {
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int n = s.nextInt();
+			int x = s.nextInt();
+			int a = s.nextInt();
+			int b = s.nextInt();
+			if(a>b){
+				a=a^b;
+				b=a^b;
+				a=a^b;
+			}
+			while(x>0 && a>1 && b<n) {
+				a--;
+				x--;
+				if(x>0) {
+					b++;
+					x--;
+				}
+			}
+			if(b<n && x>0) {
+				while(b<n && x>0) {
+					b++;
+					x--;
+				}
+			}
+			if(a>1 && x>0) {
+				while(a>1 && x>0) {
+					a--;
+					x--;
+				}
+			}
+			System.out.println(b-a);
+		}
+	}
+	static class FastReader 
+
+	{ 
+	    BufferedReader br; 
+	    StringTokenizer st; 
+
+	    public FastReader() 
+	    { 
+	        br = new BufferedReader(new
+	                 InputStreamReader(System.in)); 
+	    } 
+
+	    String next() 
+	    { 
+	        while (st == null || !st.hasMoreElements()) 
+	        { 
+	            try
+	            { 
+	                st = new StringTokenizer(br.readLine()); 
+	            } 
+	            catch (IOException  e) 
+	            { 
+	                e.printStackTrace(); 
+	            } 
+	        } 
+	        return st.nextToken(); 
+	    } 
+
+	    int nextInt() 
+	    { 
+	        return Integer.parseInt(next()); 
+	    } 
+
+	    long nextLong() 
+	    { 
+	        return Long.parseLong(next()); 
+	    } 
+
+	    double nextDouble() 
+	    { 
+	        return Double.parseDouble(next()); 
+	    } 
+
+	    String nextLine() 
+	    { 
+	        String str = ""; 
+	        try
+	        { 
+	            str = br.readLine(); 
+	        } 
+	        catch (IOException e) 
+	        { 
+	            e.printStackTrace(); 
+	        } 
+	        return str; 
+	    } 
+	} 
+
+}

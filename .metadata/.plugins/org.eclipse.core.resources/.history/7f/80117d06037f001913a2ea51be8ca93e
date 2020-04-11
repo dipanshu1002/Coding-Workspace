@@ -1,0 +1,95 @@
+package MayLunch19;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class REMMAX {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	
+	    static long reversDigits(long num) 
+	    { 
+	        long rev_num = 0; 
+	        while(num > 0) 
+	        { 
+	            rev_num = rev_num * 10 + num % 10; 
+	            num = num / 10; 
+	        } 
+	        return rev_num; 
+	    } 
+	     
+	 
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			long N = s.nextLong();
+			long max = Integer.MIN_VALUE;
+			for(long i=0;i<=N;i++) {
+				long rev = reversDigits(i);
+				if(rev>max) {
+					max=rev;
+				}
+			}
+			System.out.println(max);
+			
+		}
+	}
+
+}

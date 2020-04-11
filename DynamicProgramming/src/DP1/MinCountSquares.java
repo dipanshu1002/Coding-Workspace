@@ -1,0 +1,22 @@
+package DP1;
+import java.util.*;
+public class MinCountSquares {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int[] arr = new int[n+1];
+		arr[0]=0;
+		arr[1]=1;
+		for(int i=2;i<n+1;i++) {
+			int min=Integer.MAX_VALUE;
+			for(int j=1;j*j<=i;j++) {
+				int count = 1 + arr[i-j*j];
+				if(count<min) {
+					min = count;
+				}
+			}
+			arr[i]=min;
+		}
+		System.out.println(arr[n]);
+	}
+}

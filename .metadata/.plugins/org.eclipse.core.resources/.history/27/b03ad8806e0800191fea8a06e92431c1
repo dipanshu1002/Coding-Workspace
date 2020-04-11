@@ -1,0 +1,13 @@
+package DecCookOff;
+
+import java.util.Scanner;
+
+public class YVNUM {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int N=s.nextInt();
+		int l= (int)Math.log10(N)+1;
+		System.out.println(l);
+	}
+	
+}

@@ -1,0 +1,100 @@
+package MayLunch19;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+
+public class DPS {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			String str = s.next();
+			HashMap<Character,Integer> map = new HashMap<Character,Integer>();
+			for(int i=0;i<str.length();i++) {
+				if(map.containsKey(str.charAt(i))) {
+					int count = map.get(str.charAt(i));
+					map.put(str.charAt(i),count+1);
+				}
+				else {
+					map.put(str.charAt(i),1);
+				}
+			}
+			int odd = 0;
+			Set<Character> keys = map.keySet();
+			System.out.println(keys);
+			for(Character k : keys) {
+				if(map.get(k)%2!=0) {
+					odd++;
+				}
+			}
+			if(odd<=3) {
+				System.out.println("DPS");
+			}
+			else {
+				System.out.println("!DPS");
+			}
+			System.out.println(map);
+		
+		}
+	}
+}

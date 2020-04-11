@@ -1,0 +1,16 @@
+package MayCircuits;
+
+import java.util.*; 
+import java.lang.*; 
+import java.io.*; 
+
+class Struct{
+	long num;
+	long ind;
+}
+
+class SortByNum implements Comparator<MayCircuits.Struct>{
+	public long compare(Struct a, Struct b) {
+		return (a.num - b.num);
+	}
+}

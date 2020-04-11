@@ -1,0 +1,36 @@
+package February19;
+
+import java.util.Scanner;
+
+public class HMAPPY2 {
+	public static long gcd(long a,long b) {
+		if(a==0 || b==0) {
+			return 0;
+		}
+		if(a==b) {
+			return a;
+		}
+		return gcd(a%b,b);
+	}
+	public static void main(String[] args) {
+		Scanner  s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			long N = s.nextLong();
+			long A = s.nextLong();
+			long B = s.nextLong();
+			long K = s.nextLong();
+			long lcm = A*B/gcd(A,B);
+			long a =(long) Math.ceil(N/A);
+			long b = (long) Math.ceil(N/B);
+			long c = (long) Math.ceil(N/lcm);
+			if(N-a-b+c>=K) {
+				System.out.println("Yes");
+			}
+			else {
+				System.out.println("No");
+			}
+		
+	}
+
+}

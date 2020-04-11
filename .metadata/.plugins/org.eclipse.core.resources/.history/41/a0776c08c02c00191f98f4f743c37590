@@ -1,0 +1,172 @@
+package February19;
+
+import java.util.Scanner;
+
+ class Fraction{
+	int num;
+	int den;
+	public Fraction(int num , int den){
+		this.num = num;
+		this.den = den;
+	}
+	public void reduce() {
+		int gcd = GUESSRT.gcd(this.num, this.den);
+		System.out.println(gcd);
+		this.num = num/gcd;
+		this.den = den/gcd;
+		
+	}
+	public void add( Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = this.num*b.den + b.num*this.den;
+		this.den = this.den*b.den;
+	}
+	public void sub( Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = b.num*this.den-this.num*b.den ;
+		this.den = this.den*b.den;
+	}
+	public void multiply( Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = this.num*b.num;
+		this.den = this.den*b.den;
+	}
+}
+ 
+ class ModuloInverse {
+	 
+	  class Triplet{
+			long x;
+			long y;
+			long gcd;
+		}
+
+	  
+		public  Triplet extEuclid(long a, long b){
+	      	
+	      	if(b==0){
+	          Triplet myAns=new Triplet();
+	          myAns.gcd=a;
+	          myAns.x=1;
+	          myAns.y=0;
+	          return myAns;
+	        }
+	      	Triplet smallAns= new Triplet();
+	      	smallAns= extEuclid(b,a%b);
+	      	Triplet myAns=new Triplet();
+	      	myAns.gcd= smallAns.gcd;
+	      	myAns.x=smallAns.y;
+	      	myAns.y= smallAns.x - (a/b)*smallAns.y;
+	      	return myAns;
+	    
+	      
+	    }
+	  	public  long modInverse(long a, long b){
+	      long mod = extEuclid(a,b).x;
+	      System.out.println(mod);
+	      return mod;
+	    }
+	  	public  long gcd(long a, long b) {
+	  		if(b==0) {
+	  			return a;
+	  		}
+	  		return gcd(b,a%b);
+	  	}
+  }
+ 
+ 
+public class GUESSRT {
+	
+	
+	public static int gcd(int a , int b) {
+		if(a<b) {
+			return gcd(b,a);
+		}
+		if(b==0) {
+			return a;
+		}
+		return gcd(b,a%b);
+	}
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int N = s.nextInt();
+			int K = s.nextInt();
+			int M = s.nextInt();
+			Fraction finalProb = new Fraction(0,1);
+			Fraction currProb = new Fraction(0,1);
+			
+			
+
+			Fraction sample = new Fraction(1,1);
+			int mov = 1;
+			if(N<=K) {
+				currProb.num = 1;
+				currProb.den = N;
+				finalProb.add(currProb);
+				//System.out.println(finalProb.num+" "+finalProb.den);
+				mov++;
+				N+=K;
+			}
+			else if(N>K) {
+				if(M>1) {
+					if(N%K!=0) {
+						N = N%K;
+						mov++;
+					}
+					else {
+						N = K;
+						mov++;
+					}
+				}
+				else if(M==1) {
+					finalProb.num = 1;
+					finalProb.den = N;
+					//System.out.println(finalProb.num+" "+finalProb.den);
+					continue;
+				}
+			}
+			while(mov<=M) {
+				if(N<=K ) {
+					Fraction prevProb = new Fraction(currProb.num,currProb.den);
+					prevProb.sub(sample);
+					currProb.num = 1;
+					currProb.den = N;
+					currProb.multiply(prevProb);
+					finalProb.add(currProb);
+					mov++;
+					N+=K;
+					continue;
+				}
+				else if(N>K && mov!=M) {
+					N = N%K;
+					mov++;
+				}
+				else if(N>K && mov==M) {
+					Fraction prevProb = new Fraction(currProb.num,currProb.den);
+					prevProb.sub(sample);
+					currProb.num = 1;
+					currProb.den = N;
+				//	System.out.println("Curr-> "+currProb.num+" "+currProb.den);
+				//	System.out.println("Prev-> "+prevProb.num+" "+prevProb.den);
+					currProb.multiply(prevProb);
+					finalProb.add(currProb);
+					mov++;
+				}
+			}
+			finalProb.reduce();
+			int mod = 1000000007;
+			ModuloInverse abc = new ModuloInverse();
+			long ans = abc.modInverse(finalProb.den,mod);
+			System.out.println(ans);
+			System.out.println(finalProb.num*ans);
+			
+		}
+	}
+	
+}
+
+
+

@@ -1,0 +1,30 @@
+package February19;
+
+import java.util.Scanner;
+import java.util.*;
+
+public class ARTBALAN {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int[] arr = new int[26];
+			String str = s.next();
+			for(int i=0;i<str.length();i++) {
+				arr[str.charAt(i)-65]+=1;
+			}
+			Arrays.sort(arr);
+			ArrayList<Integer> map = new ArrayList<>();
+			for(int i=0;i<26;i++) {
+				if(arr[i]!=0) {
+					map.add(arr[i]);
+				}
+			}
+			System.out.println(map.get(1));
+			
+		}
+
+	}
+
+}

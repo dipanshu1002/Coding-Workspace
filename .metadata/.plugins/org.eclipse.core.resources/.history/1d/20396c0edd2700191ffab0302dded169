@@ -1,0 +1,24 @@
+package February19;
+
+import java.util.Scanner;
+
+public class ARTBALAN {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int[] arr = new int[26];
+			String str = s.next();
+			for(int i=0;i<str.length();i++) {
+				arr[i]=str.charAt(i)-65;
+			}
+			for(int i=0;i<26;i++) {
+				System.out.println(arr[i]);
+			}
+			
+		}
+
+	}
+
+}

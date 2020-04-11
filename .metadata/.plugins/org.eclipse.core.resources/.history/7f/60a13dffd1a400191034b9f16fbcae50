@@ -1,0 +1,16 @@
+package AnujaIISc;
+
+import java.util.Scanner;
+
+public class StrokesToPaint {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int h = s.nextInt();
+		String[] arr = new String[h];
+		for(int i=0;i<h;i++) {
+			arr[i] = s.next();
+		}
+		System.out.println(arr[0].charAt(2));;
+		
+	}
+}

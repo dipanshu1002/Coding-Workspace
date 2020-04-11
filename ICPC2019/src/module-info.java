@@ -1,0 +1,2 @@
+module ICPC2019 {
+}

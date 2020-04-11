@@ -1,0 +1,150 @@
+package June19;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class SUMAGCD {
+	static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	static long mod = (long)Math.pow(10,9)+7;
+	
+	public static long power(long a, long n) {
+		if(n==0) {
+			return 1;
+		}
+		if(n%2==0) {
+			return power((a*a)%mod,n/2);
+		}
+		else {
+			return (a%mod*power((a*a)%mod,n/2)%mod)%mod;
+		}
+	}
+	
+	public static long gcd(long a, long b) {
+		if(b==0) {
+			return a;
+		}
+		else {
+			return gcd(b,a%b);
+		}
+	}
+	static class Pair{
+		long x;
+		long y;
+	}
+	
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int N = s.nextInt();
+			Pair p = new Pair();
+			long[] arr = new long[N];
+			for(int i=0;i<N;i++) {
+				arr[i]=s.nextLong();
+			}
+			if(N==1) {
+				System.out.println(arr[0]);
+				continue;
+			}else if(N==2) {
+				System.out.println(arr[0]+arr[1]);
+				continue;
+			}
+			p.x = arr[0];
+			p.y = arr[1];
+			for(int i=2;i<N;i++) {
+			long ans1 = gcd(p.x,p.y) + arr[i];
+			long ans2 = gcd(p.x,arr[i]) + p.y;
+			long ans3 = gcd(p.y,arr[i]) + p.x;
+//			long temp=p.x;
+//			p.x =(long) Math.max(gcd(p.x,p.y),(long)Math.max(gcd(p.x,arr[i]),gcd(p.y,arr[i])));
+//			p.y = (long)Math.max(temp,(long)(Math.max(arr[i],p.y)));
+			if(ans1>ans2 && ans1>ans3) {
+				p.x = ans1-arr[i];
+				p.y = arr[i];
+			}else if(ans2>ans1 && ans2>ans3) {
+				p.x=ans2-p.y;
+			}
+			else if(ans3>ans1 && ans3>ans2){
+				p.y=ans3-p.x;
+			}else {
+				long[] arr2 = {p.x,p.y,arr[i]};
+				Arrays.sort(arr2);
+				p.x = gcd(arr2[0],arr2[1]);
+				p.y=arr2[2];
+			}
+//			else if(ans1==ans3||ans2==ans3||ans1==ans2) {
+//				if(arr[i]>p.x && arr[i]>p.y) {
+//					p.x=ans1-arr[i];
+//					p.y=arr[i];
+//				}else if(p.x>p.y && p.x>arr[i]) {
+//					p.y=ans3-p.x;
+//				}else if(p.y>p.x && p.y>p.x) {
+//					p.x=ans2-p.y;
+//				}
+//				
+//			}
+			}
+			System.out.println(p.x+p.y);
+			
+		}
+	}
+}

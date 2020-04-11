@@ -1,0 +1,14 @@
+package AnujaIISc;
+
+import java.util.Scanner;
+
+public class StrokesToPaint {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int a = 1;
+		int b = 2;
+		int c = a++ + b++;
+		System.out.println(c);
+		
+	}
+}

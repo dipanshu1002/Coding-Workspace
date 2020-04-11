@@ -1,0 +1,21 @@
+package January19;
+
+import java.util.Scanner;
+import java.util.*;
+
+public class HP18 {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int  N=s.nextInt();
+		long a=s.nextInt();
+		long b=s.nextInt();
+		LinkedList<Long> elements = new LinkedList<Long>();
+		for(int i=0;i<N;i++) {
+			long n = s.nextLong();
+			elements.add(n);
+		}
+		System.out.println(elements.get(0));
+	
+	}
+	
+}

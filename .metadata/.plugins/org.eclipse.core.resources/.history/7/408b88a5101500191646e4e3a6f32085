@@ -1,0 +1,54 @@
+package January19;
+
+import java.util.Scanner;
+import java.util.*;
+
+public class DPAIRS {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n=s.nextInt();
+		int m=s.nextInt();
+		Set<Integer> result=new HashSet<Integer>();
+		int[] A= new int[n];
+		int[] B= new int[m];
+		if(m>n) {
+			m^=n;
+			n^=m;
+			m^=n;
+		}
+		
+		for(int i=0;i<n;i++) {
+			A[i]=s.nextInt();
+		}
+		for(int i=0;i<m;i++) {
+			B[i]=s.nextInt();
+		}
+		for(int i=0;i<n;i++) {
+			result.add(A[i]+ B[0]);
+			System.out.println(0+" "+i);
+		}
+		int count=0;
+		for(int i=1;i<m;i++) {
+			for(int j=0;j<n;j++) {
+				if(result.contains(B[i]+A[j])) {
+					continue;
+				}
+				else {
+					result.add(B[i]+A[j]);
+					System.out.println(i+" "+j);
+					count++;
+					if(count==(m-1)) {
+						break;
+					}
+				}
+			}
+			if(count==(m-1)) {
+				break;
+			}
+		}
+
+		
+	}
+
+}

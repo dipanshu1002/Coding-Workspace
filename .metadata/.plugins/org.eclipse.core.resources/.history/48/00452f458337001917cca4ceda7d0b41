@@ -1,0 +1,18 @@
+package FebLunch19;
+
+import java.util.Scanner;
+
+public class TRICKYDL {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			long A = s.nextLong();
+			int D = 0;
+			while((A*D - Math.pow(2, D)+1)>0) {
+				D++;
+			}
+			System.out.println(D);
+		}
+	}
+}

@@ -1,0 +1,99 @@
+package MayCircuits;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+import MayCircuits.Capitals_Cities.FastReader;
+
+public class CapitalCities2 {
+	static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+    public static void main(String[] args) {
+    	FastReader s = new FastReader();
+		int N = s.nextInt();
+		int K = s.nextInt();
+		int[] arr = new int[N];
+		int[] sum = new int[N];
+
+		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+		for(int i=0;i<N;i++) {
+			arr[i]=s.nextInt();
+			map.put(arr[i],i+1);
+		}
+		Arrays.sort(arr);
+		sum[0]=arr[0];
+		for(int i=1;i<N;i++) {
+			sum[i]=arr[i]+sum[i-1];
+		}
+		int[] dist=new int[N];
+		dist[0] = -(N-1)*arr[0]+sum[N-1]-sum[0];
+		for(int i=1;i<N;i++) {
+			dist[i]= i*arr[i] - (N-1-i)*arr[i] - sum[i-1] + sum[N-1]-sum[i];
+		}
+		for(int i =0;i<N;i++) {
+			System.out.print(sum[i]+" ");
+		}
+		System.out.println();
+		for(int i =0;i<N;i++) {
+			System.out.print(dist[i]+" ");
+		}
+	}
+}

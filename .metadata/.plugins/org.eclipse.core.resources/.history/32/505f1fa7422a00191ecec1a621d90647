@@ -1,0 +1,29 @@
+package February19;
+
+import java.util.Scanner;
+
+public class MANRECT {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			System.out.println("Q "+0+" "+0);
+			long A = s.nextLong();
+			System.out.println("Q "+0+" "+Math.pow(10, 9));
+			long B = s.nextLong();
+			System.out.println("Q "+Math.pow(10, 9)+" "+0);
+			long C = s.nextLong();
+			System.out.println("Q "+Math.pow(10, 9)+" "+Math.pow(10, 9));
+			long D = s.nextLong();
+			long temp1 = A-B+(long)Math.pow(10, 9);
+			long temp2 = B-D+(long)Math.pow(10, 9);
+			System.out.println("Q "+0+" "+temp1/2);
+			long E = s.nextLong();
+			long x1 = 2*E+A+B-(long)(Math.pow(10, 9));
+			long y1 = A-x1;
+			long x2 = B-D+(long)(Math.pow(10, 9)) - x1;
+			long y2 = A-B+(long)(Math.pow(10, 9)) - y1;
+			System.out.println("A "+x1+" "+y1+" "+x2+" "+y2);
+		}
+	}
+}

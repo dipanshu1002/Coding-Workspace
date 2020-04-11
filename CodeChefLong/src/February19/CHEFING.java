@@ -1,0 +1,37 @@
+package February19;
+
+import java.util.Scanner;
+import java.util.*;
+
+public class CHEFING {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int N = s.nextInt();
+			Set<Character> set1 = new HashSet<>();
+			String[] arr = new String[N];
+			arr[0]=s.next();
+			char[] c = arr[0].toCharArray();
+			for(int i=0;i<c.length;i++) {
+				set1.add(c[i]);
+			}
+			for(int i=1;i<N;i++) {
+				arr[i]=s.next();
+				char[] d = arr[i].toCharArray();
+				Set<Character> set2 = new HashSet<>();
+				for(int j=0;j<d.length;j++) {
+					set2.add(d[j]);
+				}
+				set1.retainAll(set2);
+				
+			}
+			
+			System.out.println(set1.size());
+			
+			
+		}
+	}
+
+}

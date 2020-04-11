@@ -1,0 +1,42 @@
+package February19;
+
+import java.util.Scanner;
+
+public class DEPCHEF {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int N = s.nextInt();
+			long[] att = new long[N];
+			long[] def = new long[N];
+			for(int i=0;i<N;i++) {
+				att[i]=s.nextLong();
+			}
+			for(int i=0;i<N;i++) {
+				def[i]=s.nextLong();
+			}
+			long max = -1;
+			for(int i = 1 ; i<N-1;i++) {
+				if(((att[i-1]+att[i+1])<def[i]) && (def[i]>max)){
+					max = def[i];
+				}
+			}
+			if(((att[1]+att[N-1])<def[0]) && (def[0]>max)){
+				max = def[0];
+			}
+			if(((att[N-2]+att[0])<def[N-1])&& (def[N-1]>max)){
+				max = def[N-1];
+			}
+			if(max == -1) {
+				System.out.println(-1);
+			}
+			else {
+			System.out.println(max);
+			}
+		}
+
+	}
+
+}

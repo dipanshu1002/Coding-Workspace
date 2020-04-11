@@ -1,0 +1,22 @@
+package Round581;
+import java.util.*;
+public class typeB {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n  = s.nextInt();
+		int l = s.nextInt();
+		int r = s.nextInt();
+		long minSum = 0;
+		long maxSum = 0;
+		for(int i=0;i<l;i++) {
+			minSum+=(long)Math.pow(2,i);
+		}
+		minSum+=(n-l);
+		System.out.println(minSum);
+		for(int i=0;i<r;i++) {
+			maxSum+=(long)Math.pow(2,i);
+		}
+		maxSum+=((long)Math.pow(2,r-1)*(n-r));
+		System.out.println(maxSum);
+	}
+}

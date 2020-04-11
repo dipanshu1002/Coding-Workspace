@@ -1,0 +1,123 @@
+package Round608;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+public class typeB {
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int n = s.nextInt();
+		char[] str = s.nextLine().toCharArray();
+		int cntB = 0;
+		int cntW = 0;
+		for(int i=0;i<n;i++) {
+			if(str[i]=='B') {
+				cntB++;
+			}else {
+				cntW++;
+			}
+		}
+		if(cntB==n||cntW==n) {
+			System.out.println(0);
+		}
+		else if(cntB%2==1 && cntW%2==1) {
+			System.out.println(-1);
+		}else {
+//			string temp = s;
+			char[] temp = new char[n];
+			for(int i=0;i<str.length;i++) {
+				temp[i]=str[i];
+			}
+			ArrayList<Integer> v = new ArrayList<>();
+//		  	vector<ll> v;
+		  	for(int i=0;i<n-1;i++){
+		  		if(temp[i]=='W')
+		  		   continue;
+	 
+		  		   else{
+		  		   	temp[i]='W';
+		  		   	if(temp[i+1]=='W')
+		  		   	    temp[i+1]='B';
+	 
+		  		   	    else
+		  		   	       temp[i+1]='W';
+	 
+		  		   	       v.add(i+1);
+		  		   }
+		  	}
+	 
+	 
+		  			System.out.println(v.size());
+//		  	cout<<v.size()<<endl;
+		  		for(int i=0;i<v.size();i++)
+		  		   System.out.print(v.get(i)+" ");
+	 
+	 
+	 
+	 
+		  	}
+	 
+			
+		}
+	
+	static class FastReader 
+
+	{ 
+	    BufferedReader br; 
+	    StringTokenizer st; 
+
+	    public FastReader() 
+	    { 
+	        br = new BufferedReader(new
+	                 InputStreamReader(System.in)); 
+	    } 
+
+	    String next() 
+	    { 
+	        while (st == null || !st.hasMoreElements()) 
+	        { 
+	            try
+	            { 
+	                st = new StringTokenizer(br.readLine()); 
+	            } 
+	            catch (IOException  e) 
+	            { 
+	                e.printStackTrace(); 
+	            } 
+	        } 
+	        return st.nextToken(); 
+	    } 
+
+	    int nextInt() 
+	    { 
+	        return Integer.parseInt(next()); 
+	    } 
+
+	    long nextLong() 
+	    { 
+	        return Long.parseLong(next()); 
+	    } 
+
+	    double nextDouble() 
+	    { 
+	        return Double.parseDouble(next()); 
+	    } 
+
+	    String nextLine() 
+	    { 
+	        String str = ""; 
+	        try
+	        { 
+	            str = br.readLine(); 
+	        } 
+	        catch (IOException e) 
+	        { 
+	            e.printStackTrace(); 
+	        } 
+	        return str; 
+	    } 
+	} 
+
+}

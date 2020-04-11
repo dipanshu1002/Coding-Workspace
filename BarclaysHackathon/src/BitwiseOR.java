@@ -1,0 +1,134 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class BitwiseOR {
+	static class FastReader 
+
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	
+	static long mod = (long)Math.pow(10,9)+7;
+	public static long modRecursive(long a, long b, long mod) {
+		if(b==0) {
+			return 1;
+		}
+		else if(b%2==0) {
+			return (modRecursive((a*a)%mod,b/2,mod));
+		}
+		else{
+			return ((a%mod)*modRecursive((a*a)%mod,b/2,mod))%mod;
+		}
+	}
+	 static int power(int x, int y, int p) { 
+	        int res = 1; // Initialize result 
+	        x = x % p; // Update x if it is more than or 
+	        // equal to p 
+	        while (y > 0) { 
+	            // If y is odd, multiply x with result 
+	            if (y % 2 == 1) { 
+	                res = (res * x) % p; 
+	            } 
+	  
+	            // y must be even now 
+	            y = y >> 1; // y = y/2 
+	            x = (x * x) % p; 
+	        } 
+	        return res; 
+	    } 
+	
+	
+	public static void main(String[] args) {
+//		long[] arr = new long[10000001];
+//		arr[0]=0;
+//		arr[1]=1;
+//		for(int i=2;i<10000001;i++) {
+//			long ans =0;
+//			for(int j=1;j<i;j++) {
+//				ans= (ans+ (2*(j|i)%mod))%mod;
+//			}
+//			arr[i] = (arr[i-1]%mod + i%mod +ans%mod)%mod;
+////			System.out.println(arr[i]);
+//		}
+//		
+		FastReader s = new FastReader();
+		int N = s.nextInt();
+		long[] arr = new long[N+1];
+		arr[0]=0;
+		arr[1]=1;
+		for(int i=2;i<N+1;i++) {
+			long ans =0;
+			for(int j=1;j<i;j++) {
+				ans= (ans+ (2*(j|i)%mod))%mod;
+			}
+			arr[i] = (arr[i-1]%mod + i%mod +ans%mod)%mod;
+//			System.out.println(arr[i]);
+		}
+		
+		System.out.println(N);
+		//long T = modRecursive(10000000,10000000,mod);
+//		long left = ((3%mod)*modRecursive(8,N,mod))%mod;
+//		long right = (5%mod)*modRecursive(4,N,mod)%mod;
+//		long ans1 = ((left+right)%mod)/4;
+//		long ans2 = modRecursive(2,N,mod);
+//		long ans3 = ans1-ans2;
+		System.out.println(arr[N]);
+		
+//		3*8^k+5*4^k)/4-2^k
+//		System.out.println(T);
+	}
+}

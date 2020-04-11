@@ -1,0 +1,20 @@
+package May19;
+import java.util.*;
+public class REDONE {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int mod = (int)Math.pow(10,9)+7;
+		long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			int N = s.nextInt();
+			int[] dp = new int[N+1];
+			dp[0]=0;
+			dp[1]=1;
+			for(int i=2;i<=N;i++) {
+				dp[i]=(dp[i-1]%mod+i%mod+((i%mod*dp[i-1]%mod)%mod))%mod;
+			}
+			System.out.println(dp[N]);
+			
+		}
+	}
+}

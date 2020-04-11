@@ -1,0 +1,22 @@
+package January19;
+import java.util.*;
+public class FANCY {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T=s.nextInt();
+		for(int t=0;t<T;t++) {
+			String str = s.next();
+			if(str.contentEquals(" not ")) {
+				System.out.println("Fancy");
+				System.out.flush();
+			}
+			else {
+				System.out.println("regular fancy");
+				System.out.flush();
+			}
+		}
+
+	}
+
+}

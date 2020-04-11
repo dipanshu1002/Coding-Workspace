@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Penalty {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner( System.in);
+		String ind = s.next();
+		String pak = s.next();
+		char[] arr1 = ind.toCharArray();
+		char[] arr2 = pak.toCharArray();
+		System.out.println(arr1[1]);
+
+	}
+
+}

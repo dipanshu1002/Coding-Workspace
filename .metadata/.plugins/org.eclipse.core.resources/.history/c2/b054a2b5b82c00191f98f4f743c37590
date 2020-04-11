@@ -1,0 +1,100 @@
+package February19;
+
+import java.util.Scanner;
+
+ class Fraction{
+	int num;
+	int den;
+public Fraction(int num , int den){
+		this.num = num;
+		this.den = den;
+	}
+	public void reduce() {
+		int gcd = GUESSRT.gcd(this.num, this.den);
+		System.out.println(gcd);
+		this.num = num/gcd;
+		this.den = den/gcd;
+		
+	}
+	public void add( Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = this.num*b.den + b.num*this.den;
+		this.den = this.den*b.den;
+	}
+	public void sub( Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = this.num*b.den - b.num*this.den;
+		this.den = this.den*b.den;
+	}
+	public void multiply(Fraction a, Fraction b) {
+		//Fraction res = new Fraction(1,1);
+		this.num = this.num*b.num;
+		this.den = this.den*b.den;
+	}
+}
+ 
+ 
+public class GUESSRT {
+	
+	
+	public static int gcd(int a , int b) {
+		if(a<b) {
+			return gcd(b,a);
+		}
+		if(b==0) {
+			return a;
+		}
+		return gcd(b,a%b);
+	}
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int N = s.nextInt();
+			int K = s.nextInt();
+			int M = s.nextInt();
+			Fraction finalProb = new Fraction(0,1);
+			Fraction prevProb = new Fraction(0,1);
+			Fraction currProb = prevProb;
+			System.out.println(currProb.num+" "+currProb.den);
+			prevProb.num = 2;
+			prevProb.den = 5;
+			System.out.println(currProb.num+" "+currProb.den);
+
+			Fraction sample = new Fraction(1,1);
+		/*	int mov = 1;
+			if(N<K) {
+				prevProb.num = 1;
+				prevProb.den = N;
+				finalProb.add(prevProb);
+				mov++;
+				N+=K;
+			}
+			else if(N>=K) {
+				N = N%K;
+				mov++;
+				prevProb.num= 1;
+				prevProb.den = N;
+				finalProb.add(prevProb);
+				m
+			}
+			while(mov<M) {
+			if(N<K ) {
+				prevProb.num = 1;
+				prevProb.den = N;
+				finalProb.add(prevProb);
+				mov++;
+				N+=K;
+				continue;
+			}
+			else if(N>=K) {
+				
+			}
+			
+			}
+			
+		}*/
+	}
+	}
+}

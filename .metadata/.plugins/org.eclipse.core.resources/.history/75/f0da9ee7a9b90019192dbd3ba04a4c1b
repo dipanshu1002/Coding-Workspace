@@ -1,0 +1,105 @@
+package August19;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.*;
+
+public class ZOMCAV {
+	static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int T = s.nextInt();
+		for(int t=0;t<T;t++) {
+			int N = s.nextInt();
+			long[] arr = new long[N+1];
+			long[] zom = new long[N+1];
+			for(int i=0;i<N;i++) {
+				arr[i+1]=s.nextLong();
+			}
+			HashMap<Long,Long> map = new HashMap<Long,Long>();
+			for(long i=1;i<=N;i++) {
+				map.put(i,(long)0);
+			}
+			System.out.println(map);
+			for(int i=1;i<=N;i++) {
+				long l = i-arr[i];
+				long r = i+arr[i];
+				System.out.println("l: "+l);
+				while(l<=r && l<=N) {
+					if(l<=0) {
+						l++;
+						continue;
+					}
+					System.out.println(map.get(l));
+					map.put(l,map.get(l)+1);
+					l++;
+					
+				}
+			}
+			System.out.println(map);
+			for(int i=0;i<N;i++) {
+				zom[i+1]=s.nextLong();
+			}
+			
+		}
+	}
+}

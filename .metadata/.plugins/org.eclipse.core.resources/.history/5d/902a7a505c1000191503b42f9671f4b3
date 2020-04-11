@@ -1,0 +1,20 @@
+package January19;
+import java.util.*;
+import java.util.regex.*;
+public class FANCY {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int T=s.nextInt();
+		s.nextLine();
+		for(int t=0;t<T;t++) {
+		String str=s.nextLine();
+		if(str.contains(" not ")||str.contentEquals("not")||str.contains("not ")||str.substring(0,4)=="not ")
+			System.out.println("fancy");
+		else
+			System.out.println("regular fancy");
+		System.out.println(str);
+	}
+	}
+
+}

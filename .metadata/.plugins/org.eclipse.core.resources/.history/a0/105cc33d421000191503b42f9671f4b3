@@ -1,0 +1,12 @@
+package January19;
+import java.util.*;
+public class FANCY {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String str=s.nextLine();
+		System.out.println(str);
+		String ans=s.nextLine();
+	}
+
+}

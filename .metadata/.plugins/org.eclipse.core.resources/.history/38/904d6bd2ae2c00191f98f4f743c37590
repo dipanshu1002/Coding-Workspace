@@ -1,0 +1,45 @@
+package February19;
+
+import java.util.Scanner;
+
+class Fraction{
+	int num;
+	int den;
+public Fraction(int num , int den){
+		this.num = num;
+		this.den = den;
+	}
+	public void reduce() {
+		int gcd = GUESSRT.gcd(this.num, this.den);
+		System.out.println(gcd);
+		
+	}
+}
+public class GUESSRT {
+	
+	
+	public static int gcd(int a , int b) {
+		if(a<b) {
+			return gcd(b,a);
+		}
+		if(b==0) {
+			return a;
+		}
+		return gcd(b,a%b);
+	}
+	
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		Fraction a = new Fraction(6,12);
+		a.reduce();
+		/*long T = s.nextLong();
+		for(long t=0;t<T;t++) {
+			long N = s.nextLong();
+			long K = s.nextLong();
+			long M = s.nextLong();
+			while(M>0) {
+				long num = 
+			}
+		} */
+	}
+}

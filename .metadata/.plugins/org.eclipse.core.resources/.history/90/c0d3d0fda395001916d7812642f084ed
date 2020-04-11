@@ -1,0 +1,118 @@
+package Final;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+
+
+public class problem3{
+	static class Fighter{
+		int badge;
+		int power;
+	}
+	static class FastReader 
+	
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+	public static void main(String[] args) {
+		FastReader s = new FastReader();
+		int N = s.nextInt();
+		int B = s.nextInt();
+		int T = s.nextInt();
+		Fighter[] data = new Fighter[N];
+//		int[] power = new int[(int)Math.pow(10,9)];
+		HashMap<Integer, Integer> map = new HashMap<>();
+		int[] power = new int[(int)11];
+		for(int i=0;i<N;i++) {
+			Fighter player = new Fighter();
+			player.power = s.nextInt();
+			player.badge = s.nextInt();
+			if(map.get(player.badge)==null) {
+				map.put(player.badge,1);
+			}
+			else {
+				int freq = map.get(player.badge);
+				map.put(player.badge,freq+1);
+			}
+			power[player.power]++;
+			data[i]=player;
+		}
+		
+		int[] prefix  = new int[power.length];
+		int[] suffix = new int[power.length];
+		suffix[power.length-1]=power[power.length-1];
+		for(int i=power.length-2;i>0;i--) {
+			suffix[i]=power[i]+suffix[i+1];
+		}
+		for(int i=1;i<11;i++) {
+			System.out.print(power[i]+" ");
+		//	System.out.print(suffix[i]+" ");
+		}
+		System.out.println();
+		for(int i=1;i<11;i++) {
+			//System.out.print(power[i]+" ");
+			System.out.print(suffix[i]+" ");
+		}
+		long ans = 1;
+		for(int i:map.getKeyset()) {
+			int val = map.get(i);
+			ans=ans*(val+1);
+		}
+		System.out.println(ans);
+		 
+	}
+}
